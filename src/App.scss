@@ -18,8 +18,16 @@
 }
 .svgImg{
   width: 25px;
-
 }
+.editIcon{
+  font-size: 27px;
+  position: relative;
+  top: 9px;
+  right:55px;
+  cursor: pointer;
+}
+
+
 .todo_container{
   // border: 1px solid red;
   display: flex;
@@ -118,7 +126,8 @@ input {
   height: 50px;
   cursor: pointer;
   padding: 10px 30px 10px  50px;
-  font-size: 15px;
+  font-size: 20px;
+  font-weight: 600;
   list-style: none;
   border-bottom: 1px solid purple;
   overflow: hidden;
