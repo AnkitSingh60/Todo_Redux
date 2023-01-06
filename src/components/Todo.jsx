@@ -17,10 +17,10 @@ const Todo = ({content, completed, id}) => {
   return (
     <div className='todo_container' onClick={completeTodoHandler}>
       <div className={`circle ${completed ? "active" : ""}`}>
-        <img src={checkIcon} alt="check" />
+        <img src={checkIcon} className="svgImg" alt="check" />
       </div>
       <li className={`todo ${completed ? "active" : ""}`}>{content}</li>
-      <img className='delete-icon' src={closeIcon} alt="close" onClick={removeTodoHandler} />
+      <img className='delete-icon svgImg' src={closeIcon} alt="close" onClick={removeTodoHandler} />
     </div>
   )
 }

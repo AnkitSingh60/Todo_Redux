@@ -2,12 +2,40 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  
+}
+
+.App {
+  width: 700px;
+  margin: auto;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+  border-radius: 40px;
+  background-image: url("../src//images//bg5\ flower.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.svgImg{
+  width: 25px;
+
+}
+.todo_container{
+  // border: 1px solid red;
+  display: flex;
+  margin: auto;
+  width: 0%;
+}
+.letter{
+  letter-spacing: 3px;
 }
 .App {
-  min-height: 100vh;
-  // text-align: center;
+  min-height: 550px;
+  text-align: center;
+  margin-top: 30px;
+
   .todos{
-    /* border: 1px solid red; */
+
   max-width: 600px;
   margin: auto;
 }
@@ -26,14 +54,17 @@ input {
   padding: 5px;
   font-size: 16px;
   text-align: center; 
+  
 }
+
 .circle{
   border: 1px solid purple;
   height: 25px;
   width: 25px;
   position: absolute;
   left: 15px;
-  top: 25px;
+  top: 13px;
+  margin-left: 40px;
   transform: translate(-50%);
   cursor: pointer;
   border-radius: 50%;
@@ -59,7 +90,8 @@ input {
   display: none;
   position: absolute;
   right: 15px;
-  top: 25px;
+  top: 13px;
+  cursor: pointer;
   transform: translate(-50%);
 }
 &:hover .delete-icon {
@@ -67,10 +99,10 @@ input {
 }
 
 .todos_container{
-  border: 1px solid rgb(16, 221, 9);
-  border: 1px solid rgb(16, 221, 9);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   margin: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
   width: 100%;
   overflow-y: auto;
   overflow-x:hidden;
@@ -92,33 +124,40 @@ input {
   overflow: hidden;
   &.active{
     text-decoration: line-through;
-    color: gray;
+    color: rgb(7, 1, 1);
   }
 }
 .todos_footer{
-  border: 1px solid rgb(21, 5, 247);
+  // border: 1px solid rgb(21, 5, 247);
   width: 100%;
   padding: 15px;
   display: flex;
   justify-content: space-between;
 .clear{
   &:hover{
-    color: gray;
+    color: rgb(255, 4, 159);
   }
   &.active{
     color: blue;
   }
+}
+.clear{
+  font-weight: 600;
+}
+.clear:hover{
+  cursor: pointer;
 }
 .types{
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  border: 1px solid red;
+  // border: 1px solid red;
   .clear{
-    cursor: pointer;
     &:hover{
-      color: rgb(235, 19, 255);
+      
+      color: rgb(255, 4, 159);
+      cursor: pointer;
     }
     &.active{
       color: blue;
@@ -128,6 +167,11 @@ input {
 }
 }
 @media(max-width: 680px){
+  .App{
+    background-image: url("../src//images//bg5\ flower.jpg");
+    background-size: cover;
+    background-position: center;
+  }
   .todos{
     width: 90%;
     .todos_footer{

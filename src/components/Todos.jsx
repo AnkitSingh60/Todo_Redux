@@ -1,103 +1,128 @@
-import React,{useRef} from 'react'
-import Todo from './Todo'
-import {useSelector, useDispatch} from "react-redux";
-import {addTodo, clearCompleted, selectActiveTodos, selectCompletedTodos, selectShowActiveTodos, selectShowCompletedTodos, selectShowTodos,selectTodos} from "../redux/features/todo/todoSlice";
+import React, { useRef } from "react";
+import Todo from "./Todo";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addTodo,
+  clearCompleted,
+  selectActiveTodos,
+  selectCompletedTodos,
+  selectShowActiveTodos,
+  selectShowCompletedTodos,
+  selectShowTodos,
+  selectTodos,
+} from "../redux/features/todo/todoSlice";
 
-import {showCompletedFunction} from "../redux/features/todo/todoSlice"
-import {showAllFunction} from "../redux/features/todo/todoSlice"
-import {showActiveFunction} from "../redux/features/todo/todoSlice"
-
+import { showCompletedFunction } from "../redux/features/todo/todoSlice";
+import { showAllFunction } from "../redux/features/todo/todoSlice";
+import { showActiveFunction } from "../redux/features/todo/todoSlice";
 
 const Todos = () => {
   const inputRef = useRef();
   // console.log('inputRef:', inputRef)
   const dispatch = useDispatch();
-  const todos = useSelector(selectTodos)
-  const completedTodos = useSelector(selectCompletedTodos)
-  const activeTodos = useSelector(selectActiveTodos)
-  
-  const showTodos = useSelector(selectShowTodos)
-  const showActiveTodos = useSelector(selectShowActiveTodos)
-  const showCompletedTodos = useSelector(selectShowCompletedTodos)
+  const todos = useSelector(selectTodos);
+  const completedTodos = useSelector(selectCompletedTodos);
+  const activeTodos = useSelector(selectActiveTodos);
+
+  const showTodos = useSelector(selectShowTodos);
+  const showActiveTodos = useSelector(selectShowActiveTodos);
+  const showCompletedTodos = useSelector(selectShowCompletedTodos);
 
   let todosToRender;
   let activeTodosNumber = 0;
 
   const submitTodo = (e) => {
     e.preventDefault();
-    if(inputRef.current.value.trim()){
-      dispatch(addTodo({
-        id: Math.random()* 1000,
-        content: inputRef.current.value,
-        completed: false
-      }))
+    if (inputRef.current.value.trim()) {
+      dispatch(
+        addTodo({
+          id: Math.random() * 1000,
+          content: inputRef.current.value,
+          completed: false,
+        })
+      );
     }
-    inputRef.current.value = ""
-  }
+    inputRef.current.value = "";
+  };
 
   const showCompletedHandler = () => {
-    dispatch(showCompletedFunction())
-  }
+    dispatch(showCompletedFunction());
+  };
   const showAllHandler = () => {
-    dispatch(showAllFunction())
-  }
+    dispatch(showAllFunction());
+  };
   const showActiveHandler = () => {
-    dispatch(showActiveFunction())
-  }
+    dispatch(showActiveFunction());
+  };
   const clearCompletedHandler = () => {
-    dispatch(clearCompleted())
-  }
+    dispatch(clearCompleted());
+  };
 
-  if(showActiveTodos) {
+  if (showActiveTodos) {
     todosToRender = activeTodos;
-  } else if(showCompletedTodos){
-    todosToRender = completedTodos
-  }else {
-    todosToRender = todos
+  } else if (showCompletedTodos) {
+    todosToRender = completedTodos;
+  } else {
+    todosToRender = todos;
   }
 
-  todos?.forEach((todo)=> {
-    if(!todo.completed){
-      activeTodosNumber++
+  todos?.forEach((todo) => {
+    if (!todo.completed) {
+      activeTodosNumber++;
     }
-  })
-
+  });
 
   return (
-    <div className='todos'>
-      <h1>Todo from Todos component</h1>
+    <div className="todos">
+      <h2 className="letter">TodoMatic</h2>
+      <h3 className="letter">What need to be done?</h3>
       <div className="input_container">
         <form onSubmit={submitTodo}>
-          <input type="text" placeholder='Create todo here...' ref={inputRef} />
-          <button type='submit' hidden></button>
+          <input type="text" placeholder="Create todo here..." ref={inputRef} />
+          <button type="submit" hidden></button>
         </form>
       </div>
 
+      <div className="todos_footer">
+        <p className="clear">Task: {activeTodosNumber}</p>
+        <div className="types">
+          <div className="types">
+            <p
+              className={`clear ${showTodos ? "active" : ""}`}
+              onClick={showAllHandler}
+            >
+              All
+            </p>
+            <p
+              className={`clear ${showActiveTodos ? "active" : ""}`}
+              onClick={showActiveHandler}
+            >
+              Active
+            </p>
+            <p
+              className={`clear ${showCompletedTodos ? "active" : ""}`}
+              onClick={showCompletedHandler}
+            >
+              Completed
+            </p>
+          </div>
+        </div>
+        <p className="clear" onClick={clearCompletedHandler}>
+          Clear completed
+        </p>
+      </div>
       <div className="todos_container">
-        {
-          todosToRender.map((todo)=>(
-            <Todo
+        {todosToRender.map((todo) => (
+          <Todo
             content={todo.content}
             key={todo.id}
             id={todo.id}
             completed={todo.completed}
-            />
-          ))
-        }
-        <div className="todos_footer">
-          <p>{activeTodosNumber} task remaining</p>
-          <div className="types">
-          <div className="types">
-            <p className={`clear ${showTodos ? "active" : ""}`} onClick={showAllHandler} >All</p>
-            <p className={`clear ${showActiveTodos ? "active" : ""}`} onClick={showActiveHandler}>Active</p>
-            <p className={`clear ${showCompletedTodos ? "active" : ""}`} onClick={showCompletedHandler}>Completed</p>
-            </div>
-          </div>
-            <p className='clear' onClick={clearCompletedHandler}>Clear completed</p>
-        </div>
+          />
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Todos
+export default Todos;
