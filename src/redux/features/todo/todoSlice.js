@@ -16,11 +16,14 @@ export const todoSlice = createSlice({
     },
 
     updateTodo: (state, action) => {
-      console.log("state:", state);
-      console.log("action:", action.payload);
+      console.log('state:', state)
+      console.log('action:', action)
       state.todos.map((todo) => {
-        return (todo.content = action.payload);
+        if (todo.id == action.payload.id){
+          return (todo.content = action.payload.content);
+        }
       });
+
     },
 
     completeTodo: (state, action) => {
@@ -95,7 +98,6 @@ export const selectCompletedTodos = (state) => state.todos.completedTodos;
 export const selectActiveTodos = (state) => state.todos.activeTodos;
 export const selectShowTodos = (state) => state.todos.showTodos;
 export const selectShowActiveTodos = (state) => state.todos.showActiveTodos;
-export const selectShowCompletedTodos = (state) =>
-  state.todos.showCompletedTodos;
+export const selectShowCompletedTodos = (state) => state.todos.showCompletedTodos;
 
 export default todoSlice.reducer;

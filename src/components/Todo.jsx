@@ -21,16 +21,20 @@ const Todo = ({ content, completed, id }) => {
   };
 
   const handleEdit = () => {
-    dispatch(updateTodo(newTask));
-    console.log("newTask:", newTask);
+    dispatch(updateTodo({
+          id: id,
+          content: newTask,
+          
+        }));
+    console.log("newTask:", id,content);
   };
 
   return (
-    <div className="todo_container" onClick={completeTodoHandler}>
+    <div className="todo_container">
       <div className={`circle ${completed ? "active" : ""}`}>
         <img src={checkIcon} className="svgImg" alt="check" />
       </div>
-      <li className={`todo ${completed ? "active" : ""}`}>{content}</li>
+      <li className={`todo ${completed ? "active" : ""}`} onClick={completeTodoHandler}>{content}</li>
       <span
         class="material-symbols-outlined editIcon"
         onClick={() => {
