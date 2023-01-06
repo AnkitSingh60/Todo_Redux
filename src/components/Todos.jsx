@@ -36,7 +36,7 @@ const Todos = () => {
     if (inputRef.current.value.trim()) {
       dispatch(
         addTodo({
-          id: Math.random() * 1000,
+          id: Math.ceil(Math.random() * 1000),
           content: inputRef.current.value,
           completed: false,
         })
