@@ -1,4 +1,5 @@
 import Todos from "./components/Todos";
+import '../src/App.scss';
 
 function App() {
   return (
